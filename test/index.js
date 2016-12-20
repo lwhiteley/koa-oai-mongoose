@@ -113,6 +113,30 @@ test.cb('COUNT USER /v1/api/user/count', t => {
     });
 })
 
+test.cb('page USER /v1/api/user/page', t => {
+  request(server)
+    .get('/v1/api/user/page')
+    .query({
+      where: JSON.stringify({male: true}),
+      fields: JSON.stringify({_id: 0, __v: 0}),
+      sort: JSON.stringify({name: -1}),
+      page: 1,
+      size: 1,
+      populate: JSON.stringify({path: 'user'})
+    })
+    .expect(200)
+    .end(function(err, res) {
+      if (err) throw err;
+
+      t.is(res.body.page, 1);
+      t.is(res.body.size, 1);
+      t.is(res.body.total, 2);
+      t.is(res.body.pageCount, 2);
+      t.deepEqual(res.body.items[0], TEST_USERS.items[0]);
+      t.end();
+    });
+})
+
 test.cb('FIND USER /v1/api/user', t => {
   request(server)
     .get('/v1/api/user')
@@ -147,7 +171,6 @@ test.cb('FIND USER INVALID FORM /v1/api/user', t => {
     })
     .expect(400)
     .end(function(err, res) {
-      console.dir(res.body);
       if (err) throw err;
       t.end();
     });
@@ -293,7 +316,6 @@ test.cb('NEW BOOK /v1/api/book', t => {
     })
     .expect(200)
     .end(function(err, res) {
-      console.log(1, res.body);
       if (err) throw err;
 
       BOOK.author = res.body._id;
@@ -304,7 +326,6 @@ test.cb('NEW BOOK /v1/api/book', t => {
         })
         .expect(200)
         .end(function(err, res) {
-          console.log(2, res.body);
           if (err) throw err;
 
           t.truthy(!!res.body[0].author);

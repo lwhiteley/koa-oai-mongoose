@@ -8,10 +8,11 @@
     "test": "node_modules/.bin/nyc node_modules/.bin/ava -v -s test",
     "test-cov": "npm run test && npm run analyze-coverage && npm run check-coverage",
     "analyze-coverage": "node_modules/.bin/nyc report --reporter=html",
-    "check-coverage": "node_modules/.bin/nyc check-coverage --lines 90 --functions 95 --branches 85",
+    "check-coverage": "node_modules/.bin/nyc check-coverage --lines 90 --functions 95 --branches 80",
     "test-travis": "npm run test && node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info && npm run check-coverage",
     "lint": "node_modules/.bin/eslint .",
-    "example": "npm run build && DEBUG=koa-oai-mongoose*,koa-oai-router* node --harmony example/app.js"
+    "example": "npm run build && DEBUG=koa-oai-mongoose*,koa-oai-router* node --harmony example/app.js",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "koa",
@@ -38,10 +39,10 @@
     ]
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "debug": "^2.3.2",
     "koa-oai-router": "^1.0.6",
     "lodash": "^4.17.2",
-    "mongoose": "^4.7.2",
     "mongoose-schema-jsonschema-x": "^1.1.3",
     "swagger-parser": "^3.4.1",
     "url-join": "^1.1.0"
