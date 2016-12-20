@@ -6,7 +6,6 @@ import request from 'supertest';
 
 import Router from '../lib/mongoose';
 import conn from './fixtures/model';
-import connEmpty from './fixtures/model/empty-index';
 
 let server = null;
 
