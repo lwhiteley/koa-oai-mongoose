@@ -1,0 +1,17 @@
+Error:
+  title: Error
+  type: object
+  required:
+    - status
+    - error
+  properties:
+    status:
+      type: integer
+    type:
+      type: string
+    path:
+      type: string
+    error:
+      type: string
+    detail:
+      type: object

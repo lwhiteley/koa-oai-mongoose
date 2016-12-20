@@ -1,0 +1,28 @@
+User:
+  title: 人
+  type: object
+  required:
+    - name
+    - sex
+    - height
+    - weight
+  properties:
+    name:
+      type: string
+    sex:
+      type: string
+      enum:
+        - male
+        - female
+    height:
+      type: integer
+      format: int32
+      minimum: 10
+      maximum: 100
+    weight:
+      type: number
+      format: float
+      minimum: 10
+      maximum: 100
+    mobile:
+      type: string

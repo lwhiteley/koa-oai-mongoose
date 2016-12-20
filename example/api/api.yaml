@@ -1,0 +1,34 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: koa-oai-router example
+consumes:
+  - application/json
+produces:
+  - application/json
+basePath: /api
+paths:
+  /user/luck:
+    get:
+      tags:
+        - user
+      description: find a luck user
+      x-oai-controller:
+        - file: koa-oai-mongoose/user
+          handler: luck
+      parameters:
+        - name: name
+          in: query
+          type: string
+          required: true
+          description: username
+      responses:
+        200:
+          description: user's info
+          schema:
+            $ref: ./schema/user.yaml#/User
+        default:
+          description: unexpected error
+          schema:
+            $ref: ./schema/error.yaml#/Error
+
