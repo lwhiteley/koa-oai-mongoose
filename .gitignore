@@ -6,6 +6,7 @@ dist
 dist-test
 node_modules
 
+*.yaml
 *.log
 *.map
 *.lcov
