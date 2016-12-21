@@ -52,9 +52,9 @@ test.cb.before(t => {
   setTimeout(t.end, 500);
 })
 
-test.cb('DROP DATABASE /v1/api/user/drop', t => {
+test.cb('DROP DATABASE /v1/api/koa_oai_mongoose_test/user/drop', t => {
   request(server)
-    .delete('/v1/api/user/drop')
+    .delete('/v1/api/koa_oai_mongoose_test/user/drop')
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
@@ -64,9 +64,9 @@ test.cb('DROP DATABASE /v1/api/user/drop', t => {
     });
 })
 
-test.cb('DROP DATABASE /v1/api/book/drop', t => {
+test.cb('DROP DATABASE /v1/api/koa_oai_mongoose_test/book/drop', t => {
   request(server)
-    .delete('/v1/api/book/drop')
+    .delete('/v1/api/koa_oai_mongoose_test/book/drop')
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
@@ -76,9 +76,9 @@ test.cb('DROP DATABASE /v1/api/book/drop', t => {
     });
 })
 
-test.cb('FIND USER /v1/api/user', t => {
+test.cb('FIND USER /v1/api/koa_oai_mongoose_test/user', t => {
   request(server)
-    .get('/v1/api/user')
+    .get('/v1/api/koa_oai_mongoose_test/user')
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
@@ -88,9 +88,9 @@ test.cb('FIND USER /v1/api/user', t => {
     });
 })
 
-test.cb('NEW USER /v1/api/user', t => {
+test.cb('NEW USER /v1/api/koa_oai_mongoose_test/user', t => {
   request(server)
-    .post('/v1/api/user')
+    .post('/v1/api/koa_oai_mongoose_test/user')
     .send(TEST_USERS)
     .expect(200)
     .end(function(err, res) {
@@ -101,9 +101,9 @@ test.cb('NEW USER /v1/api/user', t => {
     });
 })
 
-test.cb('COUNT USER /v1/api/user/count', t => {
+test.cb('COUNT USER /v1/api/koa_oai_mongoose_test/user/count', t => {
   request(server)
-    .get('/v1/api/user/count')
+    .get('/v1/api/koa_oai_mongoose_test/user/count')
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
@@ -113,9 +113,9 @@ test.cb('COUNT USER /v1/api/user/count', t => {
     });
 })
 
-test.cb('page USER /v1/api/user/page', t => {
+test.cb('page USER /v1/api/koa_oai_mongoose_test/user/page', t => {
   request(server)
-    .get('/v1/api/user/page')
+    .get('/v1/api/koa_oai_mongoose_test/user/page')
     .query({
       where: JSON.stringify({male: true}),
       fields: JSON.stringify({_id: 0, __v: 0}),
@@ -137,9 +137,9 @@ test.cb('page USER /v1/api/user/page', t => {
     });
 })
 
-test.cb('FIND USER /v1/api/user', t => {
+test.cb('FIND USER /v1/api/koa_oai_mongoose_test/user', t => {
   request(server)
-    .get('/v1/api/user')
+    .get('/v1/api/koa_oai_mongoose_test/user')
     .query({
       where: JSON.stringify({male: true}),
       fields: JSON.stringify({_id: 0, __v: 0}),
@@ -158,9 +158,9 @@ test.cb('FIND USER /v1/api/user', t => {
     });
 })
 
-test.cb('FIND USER INVALID FORM /v1/api/user', t => {
+test.cb('FIND USER INVALID FORM /v1/api/koa_oai_mongoose_test/user', t => {
   request(server)
-    .get('/v1/api/user')
+    .get('/v1/api/koa_oai_mongoose_test/user')
     .query({
       where: '{key: 123}',
       fields: JSON.stringify({_id: 0, __v: 0}),
@@ -176,9 +176,9 @@ test.cb('FIND USER INVALID FORM /v1/api/user', t => {
     });
 })
 
-test.cb('FINDONE USER /v1/api/user/findOne with query object', t => {
+test.cb('FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne with query object', t => {
   request(server)
-    .get('/v1/api/user/findOne')
+    .get('/v1/api/koa_oai_mongoose_test/user/findOne')
     .query({
       where: {name: 'kiki'},
       fields: {_id: 0, __v: 0}
@@ -190,9 +190,9 @@ test.cb('FINDONE USER /v1/api/user/findOne with query object', t => {
     });
 })
 
-test.cb('FINDONE USER /v1/api/user/findOne with query string', t => {
+test.cb('FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne with query string', t => {
   request(server)
-    .get('/v1/api/user/findOne')
+    .get('/v1/api/koa_oai_mongoose_test/user/findOne')
     .query({
       where: JSON.stringify({name: 'kiki'}),
       fields: JSON.stringify({_id: 0, __v: 0})
@@ -206,9 +206,9 @@ test.cb('FINDONE USER /v1/api/user/findOne with query string', t => {
     });
 })
 
-test.cb('CAN NOT FINDONE USER /v1/api/user/findOne', t => {
+test.cb('CAN NOT FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne', t => {
   request(server)
-    .get('/v1/api/user/findOne')
+    .get('/v1/api/koa_oai_mongoose_test/user/findOne')
     .query({
       where: JSON.stringify({name: 'kiki1234'}),
       fields: JSON.stringify({_id: 0, __v: 0})
@@ -220,9 +220,9 @@ test.cb('CAN NOT FINDONE USER /v1/api/user/findOne', t => {
     });
 })
 
-test.cb('FIND ONE USER UPDATE /v1/api/user/findOneAndUpdate', t => {
+test.cb('FIND ONE USER UPDATE /v1/api/koa_oai_mongoose_test/user/findOneAndUpdate', t => {
   request(server)
-    .put('/v1/api/user/findOneAndUpdate')
+    .put('/v1/api/koa_oai_mongoose_test/user/findOneAndUpdate')
     .query({
       where: JSON.stringify({name: 'kiki'}),
       fields: JSON.stringify({_id: 0, __v: 0})
@@ -243,9 +243,9 @@ test.cb('FIND ONE USER UPDATE /v1/api/user/findOneAndUpdate', t => {
     });
 })
 
-test.cb('CANT NOT FIND ONE USER UPDATE /v1/api/user/findOneAndUpdate', t => {
+test.cb('CANT NOT FIND ONE USER UPDATE /v1/api/koa_oai_mongoose_test/user/findOneAndUpdate', t => {
   request(server)
-    .put('/v1/api/user/findOneAndUpdate')
+    .put('/v1/api/koa_oai_mongoose_test/user/findOneAndUpdate')
     .query({
       where: JSON.stringify({name: 'kikiasdf'}),
       fields: JSON.stringify({_id: 0, __v: 0})
@@ -263,9 +263,9 @@ test.cb('CANT NOT FIND ONE USER UPDATE /v1/api/user/findOneAndUpdate', t => {
     });
 })
 
-test.cb('PUT /v1/api/user', t => {
+test.cb('PUT /v1/api/koa_oai_mongoose_test/user', t => {
   request(server)
-    .put('/v1/api/user')
+    .put('/v1/api/koa_oai_mongoose_test/user')
     .query({
       where: JSON.stringify({name: 'bitebit'}),
       options: JSON.stringify({new: true})
@@ -287,9 +287,9 @@ test.cb('PUT /v1/api/user', t => {
     });
 })
 
-test.cb('DELETE /v1/api/user', t => {
+test.cb('DELETE /v1/api/koa_oai_mongoose_test/user', t => {
   request(server)
-    .delete('/v1/api/user')
+    .delete('/v1/api/koa_oai_mongoose_test/user')
     .query({
       where: JSON.stringify({name: 'bitebit'})
     })
@@ -303,13 +303,13 @@ test.cb('DELETE /v1/api/user', t => {
     });
 })
 
-test.cb('NEW BOOK /v1/api/book', t => {
+test.cb('NEW BOOK /v1/api/koa_oai_mongoose_test/book', t => {
   const BOOK = {
     name: 'Game Of Dota'
   }
 
   request(server)
-    .get('/v1/api/user/findOne')
+    .get('/v1/api/koa_oai_mongoose_test/user/findOne')
     .query({
       where: JSON.stringify({name: 'kiki'}),
       fields: JSON.stringify({_id: 1})
@@ -320,7 +320,7 @@ test.cb('NEW BOOK /v1/api/book', t => {
 
       BOOK.author = res.body._id;
       request(server)
-        .post('/v1/api/book')
+        .post('/v1/api/koa_oai_mongoose_test/book')
         .send({
           items: [BOOK]
         })
@@ -334,9 +334,9 @@ test.cb('NEW BOOK /v1/api/book', t => {
     });
 })
 
-test.cb('FINDONE BOOK /v1/api/user/findOne WITH POPULATE', t => {
+test.cb('FINDONE BOOK /v1/api/koa_oai_mongoose_test/user/findOne WITH POPULATE', t => {
   request(server)
-    .get('/v1/api/book/findOne')
+    .get('/v1/api/koa_oai_mongoose_test/book/findOne')
     .query({
       populate: JSON.stringify({
         path: 'author'
@@ -347,7 +347,7 @@ test.cb('FINDONE BOOK /v1/api/user/findOne WITH POPULATE', t => {
       if (err) throw err;
 
       request(server)
-        .get('/v1/api/user/findOne')
+        .get('/v1/api/koa_oai_mongoose_test/user/findOne')
         .query({
           where: JSON.stringify({name: 'kiki'})
         })
@@ -361,9 +361,9 @@ test.cb('FINDONE BOOK /v1/api/user/findOne WITH POPULATE', t => {
     });
 })
 
-test.cb('DROP DATABASE /v1/api/book/drop', t => {
+test.cb('DROP DATABASE /v1/api/koa_oai_mongoose_test/book/drop', t => {
   request(server)
-    .delete('/v1/api/book/drop')
+    .delete('/v1/api/koa_oai_mongoose_test/book/drop')
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
@@ -373,9 +373,9 @@ test.cb('DROP DATABASE /v1/api/book/drop', t => {
     });
 })
 
-test.cb('DROP DATABASE /v1/api/user/drop', t => {
+test.cb('DROP DATABASE /v1/api/koa_oai_mongoose_test/user/drop', t => {
   request(server)
-    .delete('/v1/api/user/drop')
+    .delete('/v1/api/koa_oai_mongoose_test/user/drop')
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
