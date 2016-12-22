@@ -9,29 +9,27 @@ import conn from './fixtures/model';
 
 let server = null;
 
-const TEST_USERS = {
-  "items": [{
-    "name": "bitebit",
-    "age": 12,
-    "email": "bitebit@github.com",
-    "address": "shanghai, china",
-    "male": true,
-    "bornAt": "2000-12-19T16:14:32.257Z",
-    "likes": [
-      "bitebit"
-    ]
-  }, {
-    "name": "kiki",
-    "age": 12,
-    "email": "kiki@github.com",
-    "address": "shanghai, china",
-    "male": true,
-    "bornAt": "2000-12-19T16:14:32.257Z",
-    "likes": [
-      "bitebit"
-    ]
-  }]
-};
+const TEST_USERS = [{
+  "name": "bitebit",
+  "age": 12,
+  "email": "bitebit@github.com",
+  "address": "shanghai, china",
+  "male": true,
+  "bornAt": "2000-12-19T16:14:32.257Z",
+  "likes": [
+    "bitebit"
+  ]
+}, {
+  "name": "kiki",
+  "age": 12,
+  "email": "kiki@github.com",
+  "address": "shanghai, china",
+  "male": true,
+  "bornAt": "2000-12-19T16:14:32.257Z",
+  "likes": [
+    "bitebit"
+  ]
+}]
 
 test.cb.before(t => {
   const app = new Koa();
@@ -96,7 +94,7 @@ test.cb('NEW USER /v1/api/koa_oai_mongoose_test/user', t => {
     .end(function(err, res) {
       if (err) throw err;
 
-      t.deepEqual(TEST_USERS.items, _.map(res.body, (it)=> {return _.pick(it, ['name', 'age', 'email', 'address', 'male', 'bornAt', 'likes'])}));
+      t.deepEqual(TEST_USERS, _.map(res.body, (it)=> {return _.pick(it, ['name', 'age', 'email', 'address', 'male', 'bornAt', 'likes'])}));
       t.end();
     });
 })
@@ -132,7 +130,7 @@ test.cb('page USER /v1/api/koa_oai_mongoose_test/user/page', t => {
       t.is(res.body.size, 1);
       t.is(res.body.total, 2);
       t.is(res.body.pageCount, 2);
-      t.deepEqual(res.body.items[0], TEST_USERS.items[0]);
+      t.deepEqual(res.body.items[0], TEST_USERS[0]);
       t.end();
     });
 })
@@ -153,7 +151,7 @@ test.cb('FIND USER /v1/api/koa_oai_mongoose_test/user', t => {
       if (err) throw err;
 
       t.is(res.body.length, 1);
-      t.deepEqual(res.body[0], TEST_USERS.items[0]);
+      t.deepEqual(res.body[0], TEST_USERS[0]);
       t.end();
     });
 })
@@ -201,7 +199,7 @@ test.cb('FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne with query stri
     .end(function(err, res) {
       if (err) throw err;
 
-      t.deepEqual(res.body, TEST_USERS.items[1]);
+      t.deepEqual(res.body, TEST_USERS[1]);
       t.end();
     });
 })
@@ -238,7 +236,7 @@ test.cb('FIND ONE USER UPDATE /v1/api/koa_oai_mongoose_test/user/findOneAndUpdat
       if (err) throw err;
 
       t.is(res.body.address, 'BeiJin');
-      t.is(res.body.age, TEST_USERS.items[1].age + 1);
+      t.is(res.body.age, TEST_USERS[1].age + 1);
       t.end();
     });
 })
@@ -321,9 +319,7 @@ test.cb('NEW BOOK /v1/api/koa_oai_mongoose_test/book', t => {
       BOOK.author = res.body._id;
       request(server)
         .post('/v1/api/koa_oai_mongoose_test/book')
-        .send({
-          items: [BOOK]
-        })
+        .send([BOOK])
         .expect(200)
         .end(function(err, res) {
           if (err) throw err;
