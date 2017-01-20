@@ -27,3 +27,32 @@
 
 [中文](./README.zh-CN.md)    [English](./README.md)
 
+
+
+# 特性
+* 内置Swagger-UI，方便查看、调试接口
+* 使用OpenAPI/Swagger API文档自动生成Koa路由，并支持参数校验
+* 支持OpenAPI/Swagger2.0规范，支持json、yaml格式
+* 支持基于JsonSchema V4的接口query、body、path、header参数校验
+* 支持自定义JsonSchema format校验
+* 支持自定义接口错误处理
+* 自动识别mongoose连接上的集合并生成CRUD接口
+* 支持多个mongoose连接
+* 支持扩展mongoose集合的接口
+
+# 安装
+
+> For koa@>=2.x (next):
+
+```bash
+npm install koa-oai-mongoose@next --save
+```
+
+> For koa@<2.x:
+
+**暂不支持！**
+
+
+
+# 快速上手
+
