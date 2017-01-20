@@ -1,6 +1,6 @@
 {
   "name": "koa-oai-mongoose",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/mongoose.js",
   "scripts": {
     "clean": "rm -rf .nyc_output coverage dist",
