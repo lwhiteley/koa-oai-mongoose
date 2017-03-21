@@ -42,10 +42,10 @@
 
 # 安装
 
-> For koa@>=2.x (next):
+> For koa@>=2.x:
 
 ```bash
-npm install koa-oai-mongoose@next --save
+npm install koa-oai-mongoose --save
 ```
 
 > For koa@<2.x:

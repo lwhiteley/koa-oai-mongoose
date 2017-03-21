@@ -1,6 +1,6 @@
 {
   "name": "koa-oai-mongoose",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "main": "dist/mongoose.js",
   "scripts": {
     "clean": "rm -rf .nyc_output coverage dist",
@@ -47,9 +47,6 @@
     "swagger-parser": "^3.4.1",
     "url-join": "^1.1.0"
   },
-  "publishConfig": {
-    "tag": "next"
-  },
   "devDependencies": {
     "ava": "^0.17.0",
     "babel-cli": "^6.18.0",
@@ -63,7 +60,7 @@
     "babel-plugin-transform-es2015-destructuring": "^6.19.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-plugin-transform-es2015-parameters": "^6.18.0",
-    "koa": "^2.0.0-alpha.8",
+    "koa": "^2.2.0",
     "koa-bodyparser": "^3.2.0",
     "mongoose": "^4.7.3",
     "nyc": "^9.0.1",
