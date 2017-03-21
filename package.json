@@ -1,6 +1,6 @@
 {
   "name": "koa-oai-mongoose",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "main": "dist/mongoose.js",
   "scripts": {
     "clean": "rm -rf .nyc_output coverage dist",
@@ -46,9 +46,6 @@
     "mongoose-schema-jsonschema": "^1.1.6",
     "swagger-parser": "^3.4.1",
     "url-join": "^1.1.0"
-  },
-  "publishConfig": {
-    "tag": "next"
   },
   "devDependencies": {
     "ava": "^0.17.0",

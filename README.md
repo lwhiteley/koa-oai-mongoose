@@ -40,10 +40,10 @@
 
 # Installation
 
-> For koa@>=2.x (next):
+> For koa@>=2.x:
 
 ```bash
-npm install koa-oai-mongoose@next --save
+npm install koa-oai-mongoose --save
 ```
 
 > For koa@<2.x:
@@ -54,7 +54,7 @@ npm install koa-oai-mongoose@next --save
 
 **Because this module based on [koa-oai-router](https://github.com/BiteBit/koa-oai-router), so you must read it before.**
 
-This example's source code is 
+This example's source code is
 
 ## Creating model
 
@@ -107,7 +107,7 @@ export default connection;
 
 ## Creating api doc
 
-Create a simple **api.yaml** api doc with some base info. 
+Create a simple **api.yaml** api doc with some base info.
 
 ```yaml
 swagger: '2.0'
