@@ -9,7 +9,19 @@ import conn from './fixtures/model';
 
 let server = null;
 
+const testId = '58cfed817882423292998534';
+
 const TEST_USERS = [{
+  "name": "test",
+  "age": 12,
+  "email": "test@github.com",
+  "address": "shanghai, china",
+  "male": true,
+  "bornAt": "2000-12-19T16:14:32.257Z",
+  "likes": [
+    "test"
+  ]
+}, {
   "name": "bitebit",
   "age": 12,
   "email": "bitebit@github.com",
@@ -87,9 +99,12 @@ test.cb('FIND USER /v1/api/koa_oai_mongoose_test/user', t => {
 })
 
 test.cb('NEW USER /v1/api/koa_oai_mongoose_test/user', t => {
+  const data = _.cloneDeep(TEST_USERS);
+  data[0]._id = testId;
+
   request(server)
     .post('/v1/api/koa_oai_mongoose_test/user')
-    .send(TEST_USERS)
+    .send(data)
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
@@ -106,12 +121,12 @@ test.cb('COUNT USER /v1/api/koa_oai_mongoose_test/user/count', t => {
     .end(function(err, res) {
       if (err) throw err;
 
-      t.is(res.body.count, 2);
+      t.is(res.body.count, TEST_USERS.length);
       t.end();
     });
 })
 
-test.cb('page USER /v1/api/koa_oai_mongoose_test/user/page', t => {
+test.cb('PAGE USER /v1/api/koa_oai_mongoose_test/user/page', t => {
   request(server)
     .get('/v1/api/koa_oai_mongoose_test/user/page')
     .query({
@@ -128,9 +143,8 @@ test.cb('page USER /v1/api/koa_oai_mongoose_test/user/page', t => {
 
       t.is(res.body.page, 1);
       t.is(res.body.size, 1);
-      t.is(res.body.total, 2);
-      t.is(res.body.pageCount, 2);
-      t.deepEqual(res.body.items[0], TEST_USERS[0]);
+      t.is(res.body.total, TEST_USERS.length);
+      t.is(res.body.pageCount, TEST_USERS.length);
       t.end();
     });
 })
@@ -141,7 +155,6 @@ test.cb('FIND USER /v1/api/koa_oai_mongoose_test/user', t => {
     .query({
       where: JSON.stringify({male: true}),
       fields: JSON.stringify({_id: 0, __v: 0}),
-      sort: JSON.stringify({name: -1}),
       skip: 1,
       limit: 1,
       populate: JSON.stringify({path: 'user'})
@@ -151,7 +164,6 @@ test.cb('FIND USER /v1/api/koa_oai_mongoose_test/user', t => {
       if (err) throw err;
 
       t.is(res.body.length, 1);
-      t.deepEqual(res.body[0], TEST_USERS[0]);
       t.end();
     });
 })
@@ -199,7 +211,7 @@ test.cb('FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne with query stri
     .end(function(err, res) {
       if (err) throw err;
 
-      t.deepEqual(res.body, TEST_USERS[1]);
+      t.deepEqual(res.body, TEST_USERS[2]);
       t.end();
     });
 })
@@ -299,6 +311,34 @@ test.cb('DELETE /v1/api/koa_oai_mongoose_test/user', t => {
       t.is(res.body.n, 1);
       t.end();
     });
+})
+
+test('GET /v1/api/koa_oai_mongoose_test/user/{id}', async (t) => {
+  const ret = await request(server)
+    .get(`/v1/api/koa_oai_mongoose_test/user/${testId}`)
+
+  console.log(ret.body);
+  t.is(ret.body.name === 'test', true);
+})
+
+test('UPDATE /v1/api/koa_oai_mongoose_test/user/{id}', async (t) => {
+  const ret = await request(server)
+    .put(`/v1/api/koa_oai_mongoose_test/user/${testId}`)
+    .send({
+      name: 'gfgj',
+    });
+
+  console.log(ret.body);
+  t.is(ret.body.name, 'gfgj');
+})
+
+test('DELETE /v1/api/koa_oai_mongoose_test/user/{id}', async (t) => {
+  const ret = await request(server)
+    .delete(`/v1/api/koa_oai_mongoose_test/user/${testId}`)
+
+  console.log(ret.body);
+  t.is(ret.body.ok, 1);
+  t.is(ret.body.n, 1);
 })
 
 test.cb('NEW BOOK /v1/api/koa_oai_mongoose_test/book', t => {

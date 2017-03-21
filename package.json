@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rm -rf .nyc_output coverage dist",
     "build": "npm run clean && babel lib -d dist",
-    "test": "node_modules/.bin/nyc node_modules/.bin/ava -v -s test",
+    "test": "npm run build && node_modules/.bin/nyc node_modules/.bin/ava -v -s test",
     "test-cov": "npm run test && npm run analyze-coverage && npm run check-coverage",
     "analyze-coverage": "node_modules/.bin/nyc report --reporter=html",
     "check-coverage": "node_modules/.bin/nyc check-coverage --lines 90 --functions 95 --branches 80",
@@ -63,8 +63,7 @@
     "babel-plugin-transform-es2015-destructuring": "^6.19.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-plugin-transform-es2015-parameters": "^6.18.0",
-    "eslint-config-crocodile": "^1.0.0",
-    "koa": "^2.0.0-alpha.7",
+    "koa": "^2.0.0-alpha.8",
     "koa-bodyparser": "^3.2.0",
     "mongoose": "^4.7.3",
     "nyc": "^9.0.1",
