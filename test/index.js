@@ -116,7 +116,7 @@ test.cb('NEW USER /v1/api/koa_oai_mongoose_test/user', t => {
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
-      console.log(TEST_USERS)
+      
       t.deepEqual(_.map(TEST_USERS, (it)=> {return _.omit(it, ['password'])}), 
                   _.map(res.body, (it)=> {return _.pick(it, ['name', 'age', 'email', 'address', 'male', 'bornAt', 'likes'])}));
       t.end();
