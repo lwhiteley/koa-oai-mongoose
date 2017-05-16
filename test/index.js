@@ -116,7 +116,7 @@ test.cb('NEW USER /v1/api/koa_oai_mongoose_test/user', t => {
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
-      
+
       t.deepEqual(_.map(TEST_USERS, (it)=> {return _.omit(it, ['password'])}), 
                   _.map(res.body, (it)=> {return _.pick(it, ['name', 'age', 'email', 'address', 'male', 'bornAt', 'likes'])}));
       t.end();
@@ -219,7 +219,6 @@ test.cb('FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne with query stri
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
-      // console.log(res.body)
       t.deepEqual(res.body, _.omit(TEST_USERS[2], ['password']));
       t.end();
     });
@@ -364,7 +363,6 @@ test.cb('NEW BOOK /v1/api/koa_oai_mongoose_test/book', t => {
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
-      console.log(res.body)
       BOOK.author = res.body._id;
       request(server)
         .post('/v1/api/koa_oai_mongoose_test/book')
@@ -400,7 +398,7 @@ test.cb('FINDONE BOOK /v1/api/koa_oai_mongoose_test/user/findOne WITH POPULATE',
         .end(function(err, resUser) {
           if (err) throw err;
 
-          t.deepEqual(_.omit(res.body.author, ['_id', '__v', 'password']), _.omit(resUser.body, ['_id', '__v']));
+          t.deepEqual(_.omit(res.body.author, ['_id', '__v']), _.omit(resUser.body, ['_id', '__v']));
           t.end();
         });
     });
