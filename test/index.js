@@ -219,6 +219,7 @@ test.cb('FINDONE USER /v1/api/koa_oai_mongoose_test/user/findOne with query stri
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
+      
       t.deepEqual(res.body, _.omit(TEST_USERS[2], ['password']));
       t.end();
     });
@@ -363,6 +364,7 @@ test.cb('NEW BOOK /v1/api/koa_oai_mongoose_test/book', t => {
     .expect(200)
     .end(function(err, res) {
       if (err) throw err;
+
       BOOK.author = res.body._id;
       request(server)
         .post('/v1/api/koa_oai_mongoose_test/book')
